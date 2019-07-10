@@ -10,7 +10,7 @@ string eingabe(string message)
 	cin >> ergebnis;
 	return ergebnis;
 }
-// sadsadsasd
+// hi du da!!!!!!!
 int kostenberechnen(string ziel) 
 {
 	float preis = 0;
