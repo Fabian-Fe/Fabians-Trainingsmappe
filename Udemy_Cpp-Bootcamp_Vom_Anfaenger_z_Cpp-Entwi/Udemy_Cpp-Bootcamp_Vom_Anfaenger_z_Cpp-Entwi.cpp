@@ -2,48 +2,72 @@
 #include <string.h>
 using namespace std;
 
-bool reset = 0;
-string eingabe(string message)
+
+float eingabeFloat(string message, float ausstehend)
+{
+	float ergebnis = 0;
+	cout << message << ausstehend << endl;
+	cin >> ergebnis;
+	return ergebnis;
+}
+
+string eingabeStr(string message)
 {
 	string ergebnis = "";
 	cout << message;
 	cin >> ergebnis;
 	return ergebnis;
 }
-// hi du da!!!!!!!
-int kostenberechnen(string ziel) 
-{
-	float preis = 0;
-	if (ziel=="hamburg"||ziel=="Hamburg")
-	{
-		preis = 50;
-	}
-	else if (ziel == "Hannover"|| ziel == "hannover"|| ziel == "Hanover"|| ziel == "hanover")
-	{
-		preis = 70;
-	}
-	
 
-	return preis;
+int kostenberechnen(string antwort)
+{
+
+	if (antwort == "hamburg" || antwort == "Hamburg" || antwort == "HAMBURG")
+		return 50;
+	else if (antwort == "Hannover" || antwort == "hannover" || antwort == "Hanover" || antwort == "hanover" || antwort == "HANNOVER")
+		return 70;
+
+
+}
+
+float rabattisierung(string antwortBC, float kosten)
+{
+
+	if (antwortBC == "25")
+	{
+		return (kosten * .75);
+	}
+	else if (antwortBC == "50")
+	{
+		return (kosten * .5);
+	}
+	else
+	{
+		return kosten;
+	}
+}
+
+void schuldenAbgleich(float eingezahlt, float gesamtpreis)			//rabattierterBetrag geht zu gesamtpreis über
+{
+	while (eingezahlt < gesamtpreis)
+	{
+		eingezahlt += eingabeFloat("Bitte jetzt noch zahlen: ", (gesamtpreis - eingezahlt));
+	}
 
 }
 
 
-int main() 
+int main()
 {
-	
-	string ziel = eingabe("Wohin wollen Sie fahren\n");
-	int kosten = kostenberechnen(ziel);
-	string bahncard = eingabe("\nHaben Sie eine Bahncard\n");
-	cout << "\nDer Preis fuer ihr Ziel " << ziel << " betraegt " << kosten << " Euro!\n";
-	
+	string ziel = eingabeStr("Wohin wollen Sie fahren\n"); //ziel muss für später deklariert gebraucht.
+														//gibt eingabeergebnis zurück
+	int kosten = kostenberechnen(ziel);				//gibt an ziel gekoppelten preis zurück
+	string bahncard = eingabeStr("\nHaben Sie die Bahncard 25 oder 50\n");
+	float rabattierterBetrag = rabattisierung(bahncard, kosten);
 
-	
-	
-}		
+	cout << "Regulaere Kosten sind " << kosten << " Euro, aber durch die BahnCard bleiben " << rabattierterBetrag << endl;
+	schuldenAbgleich(0, rabattierterBetrag);
 
-/*mit Card
-ohne/mit rückfahrt
-kostet $$
-eingezahlen
-Es fehlen noch $$*/
+	cout << "\nVielen Dank fuer die Zahlung von " << rabattierterBetrag << " Euro!";
+}
+
