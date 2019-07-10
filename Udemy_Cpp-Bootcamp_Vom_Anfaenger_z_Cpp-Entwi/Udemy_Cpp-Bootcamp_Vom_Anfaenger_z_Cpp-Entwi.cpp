@@ -10,7 +10,7 @@ string eingabe(string message)
 	cin >> ergebnis;
 	return ergebnis;
 }
-
+// sadsadsasd
 int kostenberechnen(string ziel) 
 {
 	float preis = 0;
@@ -22,12 +22,7 @@ int kostenberechnen(string ziel)
 	{
 		preis = 70;
 	}
-	/*else					//geplant ist die main Funktion neu zu starten
-	{
-		reset = true;
-		int main();
-		cout << "Reset aktiviert!";
-	}*/ 
+	
 
 	return preis;
 
@@ -36,11 +31,7 @@ int kostenberechnen(string ziel)
 
 int main() 
 {
-	if (reset == true) 
-	{
-		cout << "\nDIE EINGABE WAR FALSCH! VON VORNE!!!\n";
-		reset = 0;
-	}
+	
 	string ziel = eingabe("Wohin wollen Sie fahren\n");
 	int kosten = kostenberechnen(ziel);
 	string bahncard = eingabe("\nHaben Sie eine Bahncard\n");
