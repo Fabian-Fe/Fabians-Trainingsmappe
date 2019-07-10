@@ -2,21 +2,48 @@
 #include <string.h>
 using namespace std;
 
-void swap(int* a, int* b)
+bool reset = 0;
+string eingabe(string message)
 {
-	int swap = *a;
-	*a = *b;
-	*b = swap;
+	string ergebnis = "";
+	cout << message;
+	cin >> ergebnis;
+	return ergebnis;
 }
+// hi du da!!!!!!!
+int kostenberechnen(string ziel) 
+{
+	float preis = 0;
+	if (ziel=="hamburg"||ziel=="Hamburg")
+	{
+		preis = 50;
+	}
+	else if (ziel == "Hannover"|| ziel == "hannover"|| ziel == "Hanover"|| ziel == "hanover")
+	{
+		preis = 70;
+	}
+	
+
+	return preis;
+
+}
+
 
 int main() 
 {
-	int a, b;
-	a = 1;
-	b = 2;
-	swap(a,b);
-	cout << "\n a= " << a << " b=" << b<<"\n";
-
+	
+	string ziel = eingabe("Wohin wollen Sie fahren\n");
+	int kosten = kostenberechnen(ziel);
+	string bahncard = eingabe("\nHaben Sie eine Bahncard\n");
+	cout << "\nDer Preis fuer ihr Ziel " << ziel << " betraegt " << kosten << " Euro!\n";
+	
 
 	
+	
 }		
+
+/*mit Card
+ohne/mit rückfahrt
+kostet $$
+eingezahlen
+Es fehlen noch $$*/
