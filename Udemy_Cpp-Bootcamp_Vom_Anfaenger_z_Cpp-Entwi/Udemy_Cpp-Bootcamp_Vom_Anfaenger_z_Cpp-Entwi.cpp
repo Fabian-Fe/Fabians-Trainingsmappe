@@ -9,7 +9,7 @@ float eingabeFloat(string message, float ausstehend)
 	cout << message << ausstehend << endl;
 	cin >> ergebnis;
 	return ergebnis;
-}
+} 
 
 string eingabeStr(string message)
 {
