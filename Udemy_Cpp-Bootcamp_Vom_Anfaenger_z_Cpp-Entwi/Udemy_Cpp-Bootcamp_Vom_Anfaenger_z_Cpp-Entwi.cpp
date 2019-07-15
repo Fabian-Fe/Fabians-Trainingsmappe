@@ -4,41 +4,40 @@
 #include <ctime>	//to manipulate rand
 using namespace std;
 
-int main()
+void runRandom()
 {
-	srand(time(nullptr)); // use current time as seed for random generator
-	int random_variable = rand();
-	cout << "Random value on [0 " << RAND_MAX << "]: "
-		<< random_variable << '\n';
-
-	// roll a 6-sided die 20 times
-	for (int n = 0; n != 20; ++n) {
-		int x = 7;
-		while (x > 6)
-			x = 1 + rand() / ((RAND_MAX + 1u) / 6);  // Note: 1+rand()%6 is biased
-		cout << x << ' ';
+	int ende = time(NULL);
+	cout << "time Null ist : " << time(NULL)<< endl;
+	for (int i = 0; i < ende%255; i++) {
+		rand() % 49 + 1;
 	}
 }
 
-
-/*
-void myRandom(int &r) 
+void myRandom(int* lotto) 
 {
-	srand(time(NULL));
-	r = rand(); // rand() return a number between ​0​ and RAND_MAX
-	//cout << random_number;
+	for (int i = 0; i < 6; i++)
+		lotto[i]= rand()%49+1;
+	
 }
 
-int main() 
+void main() 
 {
-	int r;
-	int arrayA[] = { 0,1,2,3,4,5 };
-	int i;
+	int lotto[6];
+	runRandom();
+	myRandom(lotto);
+	cout << "\n1ste Zahl " << lotto[0] << "\n 2te Zahl " << lotto[1] << "\n 3te Zahl " << lotto[2];
+
+
+}
+
+	/*
 	for (i = 0; i < 6; i++) {
 		myRandom(r);
 		cout << arrayA[r]<< endl;
 	}
-	
-}*/
+
+	}
+	*/
+
 
 
