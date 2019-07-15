@@ -9,7 +9,7 @@ string eingabe(string message)
 
 	do
 	{
-		cout << message << endl;;
+		cout << message << endl;
 		cin >> eingabe;
 	} while (eingabe == "");
 	
@@ -19,7 +19,7 @@ string eingabe(string message)
 int main() 
 {
 	const int size = helloW.length();;
-	//string wort = eingabe("Prüfung ob Wort Isogramm ist: ");
+	//string wort = eingabe("Prüfung für welches Wort nach Isogrammetrie: ");
 	
 	char char_array[size];
 	
