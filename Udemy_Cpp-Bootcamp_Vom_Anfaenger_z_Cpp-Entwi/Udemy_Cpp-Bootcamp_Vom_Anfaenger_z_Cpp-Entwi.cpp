@@ -1,33 +1,32 @@
+#include <stdio.h>
 #include <iostream>
-#include <string.h>
+
 using namespace std;
-string helloW = "Hello World!";
 
-string eingabe(string message)
+float map(float value, float istart, float istop, float ostart, float ostop)
 {
-	string eingabe;
-
-	do
-	{
-		cout << message << endl;;
-		cin >> eingabe;
-	} while (eingabe == "");
-	
-	return eingabe;
+	return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
 }
 
-int main() 
+float eingabe(string message)
 {
-	const int size = helloW.length();;
-	//string wort = eingabe("Prüfung ob Wort Isogramm ist: ");
+	float i;
+	cout << message<< endl;
+	cin >> i;
+	return i;
+}
+
+int main() {
+	float numbToRemap = eingabe ("\nBitte Wert zum remappen angeben: ");
+	float oldlow = eingabe("\nBitte Wert fuer oldlow: ");
+	float oldhigh = eingabe("\nBitte Wert fuer oldhigh: ");
+	float newlow = eingabe("\nBitte Wert fuer newlow: ");
+	float newhigh = eingabe("\nBitte Wert newhigh ");
 	
-	char char_array[size];
-	
-	//strcpy(char_array, wort);
-	cout << endl<< wlength;
-
-
-
+	cout << "\nBeim remapping es " << map(numbToRemap, oldlow, oldhigh, newlow, newhigh);
 }
 
 
+
+
+/**/
