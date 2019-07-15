@@ -4,10 +4,10 @@
 
 using namespace std;
 
-void myRandom(int& i, int maxValue) {
-	srand((unsigned)time(0));
-	
+void myRandom(int &i, int maxValue) {
+	srand((unsigned)time(NULL));
 	i =(rand() % maxValue);
+	cout << "\n myRandom das i ist:   " << i << endl;
 }
 
 void mySpeed(int &actualSpeed,int  distanceDriven)
@@ -28,7 +28,7 @@ void mySpeed(int &actualSpeed,int  distanceDriven)
 	else if (eingabe == "0") {		
 	}
 	else {
-		cout << "\FEHLERHAFTE EINGABE!\n";
+		cout << "\nFEHLERHAFTE EINGABE!\n";
 		mySpeed(actualSpeed,distanceDriven);
 	}
 
@@ -38,13 +38,13 @@ void streckenCalc(int actualSpeed,int &distance) {
 	distance += actualSpeed;
 }
 
-void randomiseSpeedZone(int &speedZone[], int i)
+void randomiseSpeedZone(int* speedZone, int &i)
 {
 	int possibleSpeedZones[] = { 7,30,50,80,100 };
 	int j;
-	for (j = 0; j < 16; i++) 
+	for (j = 0; j < 16; j++) 
 	{
-		myRandom(5);
+		myRandom(i,5);
 		speedZone[j] = possibleSpeedZones[i];
 
 	}
@@ -56,10 +56,13 @@ int main()
 	int i=0, actualSpeed=0, clicks=0, distanceDriven=0;
 	
 	myRandom(i, 5);
-	int speedZone[] = { 7,30,30,30,50,50,50,50,50,50,80,80,80,80,100,100 };
-	randomiseSpeedZone(speedZone[],i);
 
-	//cout << "DEBUG: speedZone[i] " << speedZone[i];
+	int speedZone[16] ;
+	randomiseSpeedZone(speedZone,i);
+	int j;
+	for (j = 0; j < 16; j++)
+		cout << speedZone[j] << endl;
+
 	myRandom(i, 16);
 
 	while (actualSpeed<=speedZone[i] && distanceDriven<500)
