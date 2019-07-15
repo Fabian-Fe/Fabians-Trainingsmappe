@@ -38,13 +38,15 @@ void streckenCalc(int actualSpeed,int &distance) {
 	distance += actualSpeed;
 }
 
-void randomiseSpeedZone(int i) 
+void randomiseSpeedZone(int &speedZone[], int i)
 {
-	int possibleSpeedZones[] = {7,30,50,80,100}
-
+	int possibleSpeedZones[] = { 7,30,50,80,100 };
+	int j;
 	for (j = 0; j < 16; i++) 
 	{
-		speedZone[j] = int remap(possibleSpeedZones[i];//bitte map( und remap( pruefen
+		myRandom(5);
+		speedZone[j] = possibleSpeedZones[i];
+
 	}
 	
 }
@@ -55,7 +57,7 @@ int main()
 	
 	myRandom(i, 5);
 	int speedZone[] = { 7,30,30,30,50,50,50,50,50,50,80,80,80,80,100,100 };
-	randomiseSpeedZone(i);
+	randomiseSpeedZone(speedZone[],i);
 
 	//cout << "DEBUG: speedZone[i] " << speedZone[i];
 	myRandom(i, 16);
