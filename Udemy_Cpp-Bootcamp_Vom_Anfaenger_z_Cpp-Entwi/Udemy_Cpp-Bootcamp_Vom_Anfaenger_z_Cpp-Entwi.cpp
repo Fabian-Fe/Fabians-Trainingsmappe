@@ -1,33 +1,14 @@
+#include <stdio.h>
 #include <iostream>
-#include <string.h>
-using namespace std;
-string helloW = "Hello World!";
 
-string eingabe(string message)
+int max(int a, int b)
 {
-	string eingabe;
-
-	do
-	{
-		cout << message << endl;;
-		cin >> eingabe;
-	} while (eingabe == "");
-	
-	return eingabe;
+	return (a > b ? a : b);
 }
 
-int main() 
+void main()
 {
-	const int size = helloW.length();;
-	//string wort = eingabe("Prüfung ob Wort Isogramm ist: ");
-	
-	char char_array[size];
-	
-	//strcpy(char_array, wort);
-	cout << endl<< wlength;
-
-
-
+	int nOne = 5;
+	int nTwo = 7;
+	std::cout << max(nOne, nTwo) << " is bigger\n";
 }
-
-
