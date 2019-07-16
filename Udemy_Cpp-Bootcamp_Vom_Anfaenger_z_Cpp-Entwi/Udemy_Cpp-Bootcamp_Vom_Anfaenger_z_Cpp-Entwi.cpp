@@ -71,7 +71,8 @@ int main()
 
 	while (actualSpeed<=speedZone[i] && distanceDriven<500)
 	{
-		//alle 200 clicks aendere geschw.
+		if (clicks %300 <0)
+			nextSignAhead()
 		mySpeed(actualSpeed,distanceDriven);
 		streckenCalc(actualSpeed, distanceDriven);
 		clicks++;
