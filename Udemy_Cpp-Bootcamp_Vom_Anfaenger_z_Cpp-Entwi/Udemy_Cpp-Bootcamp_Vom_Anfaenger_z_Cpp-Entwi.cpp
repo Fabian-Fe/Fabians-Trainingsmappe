@@ -1,14 +1,21 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
-void myRandom(int &i, int maxValue) {
-	srand((unsigned)time(NULL));
-	i =(rand() % maxValue);
-	cout << "\n myRandom das i ist:   " << i << endl;
+
+void myRandom(int &i, int maxValue) 
+{
+
+	int ende = time(NULL);
+	int j;
+	for (int j = 0; j < ende % 255; j++) 
+		i= (rand() % maxValue);
 }
+
+
 
 void mySpeed(int &actualSpeed,int  distanceDriven)
 {
@@ -44,9 +51,8 @@ void randomiseSpeedZone(int* speedZone, int &i)
 	int j;
 	for (j = 0; j < 16; j++) 
 	{
-		myRandom(i,5);
-		speedZone[j] = possibleSpeedZones[i];
-
+		myRandom(i,5);						
+		speedZone[j] = possibleSpeedZones[i];		 
 	}
 	
 }
@@ -55,10 +61,8 @@ int main()
 {
 	int i=0, actualSpeed=0, clicks=0, distanceDriven=0;
 	
-	myRandom(i, 5);
-
 	int speedZone[16] ;
-	randomiseSpeedZone(speedZone,i);
+	randomiseSpeedZone(speedZone,i);		//fill 16 slot array with random speedzones
 	int j;
 	for (j = 0; j < 16; j++)
 		cout << speedZone[j] << endl;
@@ -67,6 +71,7 @@ int main()
 
 	while (actualSpeed<=speedZone[i] && distanceDriven<500)
 	{
+		//alle 200 clicks aendere geschw.
 		mySpeed(actualSpeed,distanceDriven);
 		streckenCalc(actualSpeed, distanceDriven);
 		clicks++;
