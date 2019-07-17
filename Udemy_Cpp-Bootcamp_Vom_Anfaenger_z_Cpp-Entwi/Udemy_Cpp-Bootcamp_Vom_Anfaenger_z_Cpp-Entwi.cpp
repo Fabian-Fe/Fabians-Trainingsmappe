@@ -1,33 +1,21 @@
+#include <stdio.h>
 #include <iostream>
-#include <string.h>
+
 using namespace std;
-string helloW = "Hello World!";
 
-string eingabe(string message)
+void main()
 {
-	string eingabe;
+	double preis = 1.45;
 
-	do
-	{
-		cout << message << endl;;
-		cin >> eingabe;
-	} while (eingabe == "");
-	
-	return eingabe;
+	double &preisReferenzEins = preis;										// preis ist nun durch & referenziert
+	cout << "preisReferenzEins: " << preisReferenzEins << " Euro" << endl;
+	double &preisReferenzZwei = preisReferenzEins;							//preis is nun mit pREins und pRZwei ref
+	cout << "preisReferenzZwei: " << preisReferenzZwei << " Euro" << endl;
+	const double &preisReferenzDrei = preis;								//pRDrei ist const
+	cout << "preisReferenzDrei: " << preisReferenzDrei << " Euro" << endl;
+	preisReferenzZwei = 2.05;
+	cout << "Preis: " << preis << " Euro" << endl;
+	cout << "preisReferenzDrei auch: " << preisReferenzDrei << " Euro" << endl;
+	//wow, das Referenzieren ändert auch den Originalwert von preis über Referenzbrücken
+	//wow2, die Konstante hat zwar eine Konstante variabel, diese kann aber geändert werden!
 }
-
-int main() 
-{
-	const int size = helloW.length();;
-	//string wort = eingabe("Prüfung ob Wort Isogramm ist: ");
-	
-	char char_array[size];
-	
-	//strcpy(char_array, wort);
-	cout << endl<< wlength;
-
-
-
-}
-
-
