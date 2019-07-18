@@ -16,45 +16,48 @@ void swap(int &a, int &b)
 
 int random(int r)
 {
-	srand(time(NULL));
-	return((rand() % (r - 1)) + 1);
-
+	int ende = time(NULL);
+	for (int i = 0; i < ende % 255; i++) 
+	{
+		return (rand() % (r-1) + 1);
+	}
 }
 
-void randomizeLotto(int* lotto)
+void randomizeLotto(int* lotto,int length)
 {
-	int i, ziehungen = 5; //random(5)
-	for (i = 0; i < ziehungen; ++i)
+	int i;
+	for (i = 0; i < length; ++i)
 		lotto[i] = random(49);
 }
 
+void printStatus(string message,int* lotto)
+{
+	cout << endl << message;
+	int i;
+	for (i = 0; i < 10 && lotto[i] != -858993460; i++)
+		cout << lotto[i] << ", ";
+	cout << endl;
+}
 
 int main() 
 {
-	int lotto[6];
-	randomizeLotto(lotto);
+	int lotto[10];
 	const int length = (sizeof(lotto) / sizeof(*lotto))-1;
-	int posListe[length];
-	//outer loop
-	int i;
-	int smallest = lotto[0];
+	randomizeLotto(lotto, length);
+	printStatus("Lotto UNsortiert: ", lotto);
+	int  i;
 	for (i = 0; i < length; i++)
 	{
 		int j;
 		for (j = i; j < length; j++)
 		{
 			if (lotto[i] > lotto[j]){
-				int smallest = i;			
-				cout << lotto[i] << " ist groesser als " << lotto[j]
-				<< " also Tausch!"<< endl;
+			//	cout << lotto[i] << " ist groesser als " << lotto[j]
+			//	<< " also Tausch!"<< endl;
 				swap(lotto[i], lotto[j]);
 			}
 		}
 
 	}
-	cout << endl << "Lotto sortiert: ";
-	for (i = 0; i < length; i++)
-		cout << lotto[i] << ", ";
-	cout << endl;
-	
+	printStatus("Lotto sortiert:   ", lotto);	
 }
