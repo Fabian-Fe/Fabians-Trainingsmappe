@@ -1,34 +1,23 @@
+#include <stdio.h> //I / O functions
 #include <iostream>
-#include <string.h>
+#include <array>
 using namespace std;
 
-void swap(int,int);
-
-
-int main() 
+void main() 
 {
-	int lotto[] = { 42,3,49,12 };
-	int posListe[4];
-	//outer loop
+	array<double, 3>preise;	// erstelle Obj preise nach Schema der 
+							//Klasse array mit Slots für 3 double Werte
+	preise.at(0) = 1.45;
+	preise.at(1) = 0.85;
+	preise.at(2) = 0.75;
 
-		// for loop with i
-	if (lotto[0] < lotto[1])	
-		int smallest = i
-	// end loop, smalles of round determined
-		posListe [j]= smallest
-		//outer loop
+	for (unsigned int index = 0; index < preise.size(); index++)
+		cout << "Element " << index << ": "
+		<< preise.at(index) << endl;
 
-		//rearrangeloop
-		for (i = 0; i < length; i++)
-		{
-			swap (lotto[i],posListe)
-		}
-		swap
-		
-}
+	double summe = 0.0;
+	for (const double &p:preise)		//folgend &p als Substitut für preise
+		summe += p;
+	cout << "Summe: " << summe << endl;
 
-void swap(int a,int b)
-{
-	
-		
 }
