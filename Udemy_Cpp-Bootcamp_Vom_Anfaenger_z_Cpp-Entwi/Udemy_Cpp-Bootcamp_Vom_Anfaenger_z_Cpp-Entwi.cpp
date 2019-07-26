@@ -46,12 +46,12 @@ void nextSignAhead(int distanceDriven, int* speedZone, int& i, int& k)
 {
 	if (distanceDriven >= k + 100)
 	{
-		i++;
-		k += 300;
+		i++;				//i ist slot der Speedzone
+		k += 300;			//das nächste Schild wird in 300 distanz gesetzt
 	}
 	cout << "Die aktuelle Zone ist: " << speedZone[i];
 
-	if (k < distanceDriven && distanceDriven < k + 100)
+	if (k <= distanceDriven && distanceDriven <= k + 100)		//wenn gefahrende Distanz zwischen 0und 100 vor schild (k+100) ist,
 		cout << " und das naechste Schild bei " << k + 100 << " zeigt " << speedZone[i + 1] << " an.";
 
 	cout << endl;
@@ -92,9 +92,9 @@ int myRandom(int i, int maxValue)
 	return i;
 }
 
-void randomiseSpeedZone(int* speedZone, int& i)
+void randomiseSpeedZone(int* speedZone)
 {
-
+	int  i = 0;
 	int possibleSpeedZones[] = { 10,30,50,80,100 };
 
 	for (int j = 0; j < 16; j++)
@@ -104,9 +104,13 @@ void randomiseSpeedZone(int* speedZone, int& i)
 	}
 
 }
-void driving(int& actualSpeed, int* speedZone, int& distanceDriven, int driveLength,  int& clicks, int& k, int& strafe)
+void driving(int* speedZone)
 {
+	int actualSpeed = 0, clicks = 0, distanceDriven = 0, driveLength = 1000, speedSign = 0,  strafe = 0;
 	int i = 0;
+	int k = 100;				//k ist anfangs 100 (distanz), wann man 1.Schild sieht
+								// init darf nicht in der while-schleife sein
+
 
 	while (distanceDriven < driveLength)
 	{
@@ -121,23 +125,21 @@ void driving(int& actualSpeed, int* speedZone, int& distanceDriven, int driveLen
 	}
 	
 		cout << "\nSie sind in " << clicks << " Zeiteinheiten angekommen und haben eine Strafe von "
-			<< strafe << " gesammelt!" ;
+			<< strafe << " gesammelt!" << endl;
 	
 }
 
 int main()
 {
-	int  i = 0, actualSpeed = 0, clicks = 0, distanceDriven = 0, driveLength = 1000, speedSign = 0, k = 100, strafe = 0;
-	
 	int speedZone[16];
-	randomiseSpeedZone(speedZone, i);		//fill 16 slot array with random speedzones
+	randomiseSpeedZone(speedZone);		//fill 16 slot array with random speedzones
 	
 
 	/*for (int j = 0; j < 16; j++)
 		cout << speedZone[j] << endl;*/
 	
 	clearScreen(25);
-	driving(actualSpeed, speedZone, distanceDriven, driveLength, clicks, k, strafe);
+	driving(speedZone);
 
 	
 	return 1;
