@@ -1,34 +1,30 @@
+#include <stdio.h>
 #include <iostream>
-#include <string.h>
 using namespace std;
 
-void swap(int,int);
-
-
-int main() 
+int eingabeProzente()
 {
-	int lotto[] = { 42,3,49,12 };
-	int posListe[4];
-	//outer loop
-
-		// for loop with i
-	if (lotto[0] < lotto[1])	
-		int smallest = i
-	// end loop, smalles of round determined
-		posListe [j]= smallest
-		//outer loop
-
-		//rearrangeloop
-		for (i = 0; i < length; i++)
-		{
-			swap (lotto[i],posListe)
-		}
-		swap
-		
+	int input;
+	cout << "Geben sie bitte Prozente an: ";
+	cin >> input;
+	return input;
+	//wenn mit Buchstabeneingabe vorab: cond: <=50%, >100%, noString
 }
-
-void swap(int a,int b)
+void main()
 {
+	string buchstaben[4] = {"E", "N", "T", "P"};
+	//string actualPersTyp;
+	int prozente[4];
+	for (int i = 0; i < 4; i++)
+		prozente[i] = eingabeProzente();
 	
-		
+	for (int i = 0; i < 4; i++)
+		if (prozente[0] > 50)
+			buchstaben[0] = "I";
+			
+
+	/*actualPersTyp = buchstaben;*/
+	//ihr typ ist:
+	cout << "\nIhr Persoenlichkeits-Typ ist: " << buchstaben[0]+ buchstaben[1] << endl;
+	
 }
