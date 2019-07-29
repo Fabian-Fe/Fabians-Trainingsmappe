@@ -9,10 +9,13 @@ using namespace std;
 
 
 
+	
+
 
 void mySpeed(int& actualSpeed, int  distanceDriven, int driveLength)
 {
 	string eingabe;
+	cout << string(actualSpeed, 'O')<< endl;
 
 	cout << "GESCHWINDIGKEIT:     " << actualSpeed << "       Strecke gefahren: " << distanceDriven << endl;
 	cout << "\n waehlen sie + oder - zum be- oder entschleunigen oder 0\n";// als info() auslagern
@@ -119,7 +122,7 @@ void driving(int* speedZone)
 		mySpeed(actualSpeed, distanceDriven, driveLength);
 		
 		streckenCalc(actualSpeed, distanceDriven);
-		clearScreen(24);
+		clearScreen(23);
 		strafe+=strafzahlungen(actualSpeed, speedZone, i);
 		++clicks;
 	}
