@@ -1,33 +1,33 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
-string helloW = "Hello World!";
 
-string eingabe(string message)
+void main()
 {
-	string eingabe;
-
-	do
+	string getipptes;
+	char eingabe[255] = { 'H','e','l','l','o', ' ', 'W','o','r','l','d' };
+	
+	cin >> getipptes;
+	for (int i = 0; i <getipptes.length(); i++)
 	{
-		cout << message << endl;
-		cin >> eingabe;
-	} while (eingabe == "");
-	
-	return eingabe;
+		eingabe[i] = getipptes[i];
+	}
+
+	for (int i = 0; i <= getipptes.length(); i++)
+	{
+		if (eingabe[i] == '\0') 
+		{
+			cout << "\nContinue!\n";
+			continue;
+		}
+		else
+		{
+			for (int j = (i + 1); j <= getipptes.length()-1; j++)
+			{
+				if (eingabe[i] == eingabe[j] && eingabe[i] != ' ')
+					cout << eingabe[i] << "ist doppelt!" << endl;
+			}
+		}
+		
+	}
 }
-
-int main() 
-{
-	const int size = helloW.length();;
-	//string wort = eingabe("Prüfung für welches Wort nach Isogrammetrie: ");
-	
-	char char_array[size];
-	
-	//strcpy(char_array, wort);
-	cout << endl<< wlength;
-
-
-
-}
-
-
