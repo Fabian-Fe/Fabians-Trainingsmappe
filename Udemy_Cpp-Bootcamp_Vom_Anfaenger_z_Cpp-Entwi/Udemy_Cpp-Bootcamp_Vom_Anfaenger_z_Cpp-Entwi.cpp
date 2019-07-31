@@ -1,31 +1,27 @@
 #include <iostream>
 #include <string.h>
+#include <sstream>
 using namespace std;
 
 void main()
 {
-	string getipptes;
-	char eingabe[255] = { 'H','e','l','l','o', ' ', 'W','o','r','l','d' };
+	string eingabe;
+	getline(cin, eingabe);		//nimmt auch leerzeichen
 	
-	cin >> getipptes;
-	for (int i = 0; i <getipptes.length(); i++)
+	for (int i = 0; i <= eingabe.length()-1; i++)
 	{
-		eingabe[i] = getipptes[i];
-	}
-
-	for (int i = 0; i <= getipptes.length(); i++)
-	{
-		if (eingabe[i] == '\0') 
+		eingabe[i] = tolower(eingabe[i]);	//to lower case
+		if (eingabe[i] == '\0')		//FALLS ende erreicht
 		{
-			cout << "\nContinue!\n";
+			cout << "\nString ab hier leer\n";
 			continue;
 		}
 		else
 		{
-			for (int j = (i + 1); j <= getipptes.length()-1; j++)
+			for (int j = (i + 1); j <= eingabe.length()-1; j++)
 			{
 				if (eingabe[i] == eingabe[j] && eingabe[i] != ' ')
-					cout << eingabe[i] << "ist doppelt!" << endl;
+					cout << eingabe[i] << " ist doppelt!" << endl;
 			}
 		}
 		
