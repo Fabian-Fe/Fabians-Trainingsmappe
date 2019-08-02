@@ -1,36 +1,83 @@
 #include <iostream>
-#include <string.h>
-#include <array>
+#include <string>
 using namespace std;
 
-int average(double* x, int length)
+class Kfz
 {
-	double summe=0; //einfach nur ein zaehler
-	for (int i = 0; i < length; i++)
-		summe += x[i];
-	//cout << "length ist: " << length<< endl;
-	return (summe/length);
+public:
+	Kfz(int speed, int passagiere, double abgase, string bezeichnung)
+	{
+		this->speed = speed;
+		this->passagiere = passagiere;
+		this->abgase = abgase;
+		this->bezeichnung = bezeichnung;
+	}
+	void ausgeben();
+private:
+	int speed, passagiere;
+	double abgase = 2.500;
+	string bezeichnung;
+};
+
+void Kfz::ausgeben()
+{
+	cout <<  "Gefaehrt: " << this->bezeichnung << " ||Speed: "<< this->speed << " ||CO2 in kg/l: " << this->abgase <<  endl;
 }
 
-
-int main() 
+class Auto : public Kfz
 {
-		int c, length=0;
-		double x[255];
-		cout << "Wie lang? (Max 255)" << endl;
-		while (length < 1 || length >255 || length == NULL) 
-		{				//ERROR, wenn cin kein int ist z.B. qwert oder .99
-			cin >> length;
-			cout << "\n length: "<< length<< endl;
-			cin.clear();
-		}
+	double capacity;
+	//Circle(long a, long b, long c) : GeoObjekt(a,b), d(c) {}
+public:
+	Auto(const int& s, const int& p, const double& a, const string& b, double capacity) : Kfz(s, p, a, b)
+	{
+		this->capacity = capacity;
+	}
+	~Auto()
+	{
+		
+	}
+};
 
-		for (c=0; c < length; c++)
-		{
-			cout << "\nWert " << (c + 1) << ":";
-			cin >> x[c];
-		}
-		cout<< "\nDer Durchschnitt ist: " << average(x, length);
+class Lkw : public Kfz
+{
+	double capacity;
+
+public:
+	Lkw(const int& s, const int& p, const double& a, const string& b, double capacity) : Kfz(s, p, a, b)
+	{
+		this->capacity = capacity;
+	}
+	~Lkw()
+	{}
+};
+
+void main()
+{
+
+	Auto grauerSmart(170, 4, 2500.90, "alter smart",980);
+	//grauerSmart.capacity = 980;
+	//grauerSmart.werteZuweisen(170,4,2500.90, "alter smart");
 	
-}
+	grauerSmart.ausgeben();
 
+	Auto roterFerrari(230, 2, 3090.25, "Mein Schneller Flitzer",420);
+	//roterFerrari.capacity = 420;
+	//roterFerrari.werteZuweisen(230, 2, 3090.25, "Mein Schneller Flitzer");
+	roterFerrari.ausgeben();
+	
+
+	//Lkw berta(110, 2, 3255.50, "Unser alter Truck!", 14000);
+	Lkw* berta = new Lkw(110, 2, 3255.50, "Unser alter Truck!", 14000);
+	Lkw* certa = new Lkw(11, 5, 2255.50, "Unser neuer Truck!", 15000);
+	//berta.capacity = 14500;
+	//berta.werteZuweisen(110, 2, 3255.50, "Unser alter Truck!");
+	berta[0].ausgeben();
+	certa[0].ausgeben();
+
+	delete berta;
+	
+
+
+
+}
