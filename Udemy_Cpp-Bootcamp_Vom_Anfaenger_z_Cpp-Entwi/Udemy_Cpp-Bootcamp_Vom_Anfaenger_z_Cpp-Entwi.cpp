@@ -4,19 +4,63 @@ using namespace std;
 
 class Kfz
 {
-public:
+public: 
+	//Polymorphie quasi Überladung von Konstruktoren in klassen
+	
+	//regulärer Konstruktor
 	Kfz(int speed, int passagiere, double abgase, string bezeichnung)
 	{
-		this->speed = speed;
-		this->passagiere = passagiere;
+		this->speed = speed; //this-> wegen Pointer Zuweisung (siehe Children)
+		(*this).passagiere = passagiere; //alternative zu ->
 		this->abgase = abgase;
 		this->bezeichnung = bezeichnung;
 	}
+
+	//folgender Konstruktor benutzt Memberlisten-Initialisierer:
+	//		(obsolet, weil identisch in Argument-Anzahl und -Typen)
+	Kfz(int s, int p, double a, string b)
+		: speed(s), passagiere(p), abgase(a), bezeichnung(b) // member init list
+	{}
+
+	//folgender Konstruktor lässt .bezeichnung weg, dieses Attribut
+	//hat aber einen default-Wert (s.u.)
+	//außerdem kann es ebenfalls mit 2 Attributen ausgeführt werden, denn
+	//abgase hat default-Wert im Konstruktor-Argument
+	Kfz(int speed, int passagiere, double abgase = 2150)//Nur 3 Arg
+	{
+		(*this).speed = speed;
+		this->passagiere = passagiere;
+		this->abgase = abgase;
+
+	}
+
+	//Konstruktor mit nur einem Argument
+	explicit Kfz(int i) : speed(i), passagiere(i) // member init list
+	{}				//ein i wird an beliebig viele Attribute weitergegeben
+
+
+	//public funktionen können  aufKlassen-eigene private attribute 
+	//(und protected-Attribute von Überklassen) zugreifen
 	void ausgeben();
-private:
+
+	//getter-Methode
+	int getSpeed()
+	{
+		return this->speed;
+	}
+	//setter-Methode
+	void setSpeed(int speednew)
+	{
+		this->speed = speednew;
+	}
+
+private:	//können NICHT mit .attribut angesprochen werden
 	int speed, passagiere;
 	double abgase = 2.500;
-	string bezeichnung;
+	string bezeichnung="Default-BeZeichnung";
+protected:
+	//Attribute hierin können nicht in main, jedoch von innerhalb der
+	//Subklassen angesprochen werden
 };
 
 void Kfz::ausgeben()
@@ -26,6 +70,7 @@ void Kfz::ausgeben()
 
 class Auto : public Kfz
 {
+protected:	
 	double capacity;
 	//Circle(long a, long b, long c) : GeoObjekt(a,b), d(c) {}
 public:
@@ -55,25 +100,28 @@ public:
 void main()
 {
 
-	Auto grauerSmart(170, 4, 2500.90, "alter smart",980);
-	//grauerSmart.capacity = 980;
-	//grauerSmart.werteZuweisen(170,4,2500.90, "alter smart");
-	
+
+	Auto grauerSmart(170, 4, 2500.90 , "alter smart",980);
 	grauerSmart.ausgeben();
 
 	Auto roterFerrari(230, 2, 3090.25, "Mein Schneller Flitzer",420);
-	//roterFerrari.capacity = 420;
-	//roterFerrari.werteZuweisen(230, 2, 3090.25, "Mein Schneller Flitzer");
 	roterFerrari.ausgeben();
 	
 
-	//Lkw berta(110, 2, 3255.50, "Unser alter Truck!", 14000);
 	Lkw* berta = new Lkw(110, 2, 3255.50, "Unser alter Truck!", 14000);
 	Lkw* certa = new Lkw(11, 5, 2255.50, "Unser neuer Truck!", 15000);
-	//berta.capacity = 14500;
-	//berta.werteZuweisen(110, 2, 3255.50, "Unser alter Truck!");
+
 	berta[0].ausgeben();
 	certa[0].ausgeben();
+
+	Kfz eigenbau(130, 1);//abgase nimmt Default-Wert aus Konstruktor-parameter
+					//bezeichnung nimmt aus defauklt attribut
+	eigenbau.ausgeben();
+
+	Kfz eigenBauBus(70); //greift auf letzten Konstruktor mit nur 1 Argument
+	eigenBauBus.ausgeben();//70 wird an speed und passagiere weitergegeben
+
+
 
 	delete berta;
 	
