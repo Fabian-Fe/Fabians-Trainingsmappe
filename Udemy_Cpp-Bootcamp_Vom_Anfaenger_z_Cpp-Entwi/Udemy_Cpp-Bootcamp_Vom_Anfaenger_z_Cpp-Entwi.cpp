@@ -7,10 +7,16 @@ class Flight
 {
 public:
 	Flight(int numb); //FlugNr.
-	void ausgeben();
 	friend class Passenger; 
 	std::vector<Passenger> passList;	//Liste fuer Passagiere auf dem Flug
 	~Flight();
+	//Function
+	void ausgeben()
+	{
+		
+		std::cout << "Flug# " << number << "s Passagiere: ";
+		std::cout << passList.at(0).name << std::endl; 	//C2027	 Verwendung des undefinierten Typs "Passenger"	
+	}
 private:
 	int number;
 };
@@ -30,12 +36,7 @@ Flight::~Flight()
 	std::cout << "Flug# " << number << " wurde geloescht!\n";
 }
 
-//Function
-void Flight::ausgeben()
-{
-	std::cout << "Flug# " << number << "s Passagiere: ";
-	std::cout << passList.at(0).name << std::endl; 	//C2027	 Verwendung des undefinierten Typs "Passenger"	
-}
+
 
 class Passenger
 {
