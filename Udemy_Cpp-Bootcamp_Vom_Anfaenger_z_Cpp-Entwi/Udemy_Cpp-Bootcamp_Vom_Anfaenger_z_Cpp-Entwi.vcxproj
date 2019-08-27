@@ -150,7 +150,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Udemy_Cpp-Bootcamp_Vom_Anfaenger_z_Cpp-Entwi.cpp" />
+    <ClCompile Include="Flight.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Passenger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Flight.h" />
+    <ClInclude Include="Passenger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
